@@ -23,7 +23,7 @@ function User() {
             </Link>
             <div className="grid grid-cols-1 md:grid-cols-4 mb-8 gap-4 w-full">
                 <div className="avatar md:col-span-1 pl-4 ">
-                    <div className="md:mb-8 rounded-btn relative">
+                    <div className="md:mb-8 w-10/12 h-5/6 rounded-btn relative">
                         <img src={avatar_url} alt="profile" />
                         <div className="absolute w-full h-full bg-black top-0 left-0 bg-opacity-30 p-2">
                             <div className="absolute bottom-5">
@@ -48,7 +48,7 @@ function User() {
                             <a href={html_url} target="_blank" rel="noreferrer">
                                 <button className="btn btn-outline">Visit Github Profile</button>
                             </a>
-                            <div className="w-full shadow stats">
+                            {<div className="grid-flow-row md:grid-flow-col  mt-4 w-full shadow stats">
                                 <div className="stat">
                                     <div className="stat-title">Location</div>
                                     <div className="stat-value text-2xl">{location}</div>
@@ -61,13 +61,13 @@ function User() {
                                     <div className="stat-title">Twitter</div>
                                     <div className="stat-value text-2xl"><a href={`https://twitter.com/${twitter_username}`} target="_blank">{twitter_username}</a></div>
                                 </div>}
-                            </div>
+                            </div>}
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center w-full px-16 mb-12">
-                <div className="w-full shadow stats">
+            <div className="flex justify-center w-full lg:px-16 mb-12">
+                <div className="grid-flow-row md:grid-flow-col w-full shadow stats">
                     <div className="stat">
                         <div className="stat-figure text-accent">
                             <FaUsers className="text-5xl" />
@@ -92,7 +92,7 @@ function User() {
                 </div>
             </div>
 
-            <div className="flex flex-col gap-4 items-center w-10/12 mx-auto px-16">
+            <div className="flex flex-col gap-4 items-center w-11/12 mx-auto lg:px-16">
                 <h1 className="text-3xl font-extrabold self-start">Latest Repositories</h1>
                 <div className="flex flex-col gap-2 w-full items-center">
                     {repos.map((repo) => {
