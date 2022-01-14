@@ -14,11 +14,17 @@ const GithubReducer = (state, action) => {
             return {
                 ...state,
                 user: { ...action.payload }
-            }
+            };
+        case 'USER_REPO_GET':
+            return {
+                ...state,
+                repos: [...action.payload]
+            };
         case 'USER_DELETE':
             return {
                 ...state,
-                user: {}
+                user: {},
+                repos: []
             }
         default:
             return state;

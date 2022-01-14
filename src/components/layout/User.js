@@ -3,12 +3,14 @@ import { FaArrowLeft, FaCodepen, FaUsers, FaUserFriends } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 
 import GithubContext from "../../context/github/GithubContext";
+import RepoItem from "../Users/RepoItem";
 function User() {
     const params = useParams();
-    const { getUser, user } = useContext(GithubContext);
+    const { getUser, getUserRepos, user, repos } = useContext(GithubContext);
 
     useEffect(() => {
-        getUser(params.login)
+        getUser(params.login);
+        getUserRepos(params.login);
     }, [])
     const { avatar_url, name, login, bio, blog, followers, following, hireable, html_url, location, public_repos, type, twitter_username } = user;
     return (
@@ -64,7 +66,7 @@ function User() {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center w-full px-16">
+            <div className="flex justify-center w-full px-16 mb-12">
                 <div className="w-full shadow stats">
                     <div className="stat">
                         <div className="stat-figure text-accent">
@@ -87,6 +89,15 @@ function User() {
                         <div className="stat-title">Public Repos</div>
                         <div className="stat-value">{public_repos}</div>
                     </div>
+                </div>
+            </div>
+
+            <div className="flex flex-col gap-4 items-center w-10/12 mx-auto px-16">
+                <h1 className="text-3xl font-extrabold self-start">Latest Repositories</h1>
+                <div className="flex flex-col gap-2 w-full items-center">
+                    {repos.map((repo) => {
+                        return <RepoItem key={repo.id} repo={repo} />
+                    })}
                 </div>
             </div>
         </>
