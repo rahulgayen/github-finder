@@ -14,8 +14,9 @@ function UserSearch() {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (event.target.value === undefined || event.target.value.trim().length == 0)
+        if (userInput.trim().length == 0) {
             alertEvent({ msg: "Please enter something" })
+        }
         else {
             setInput(userInput);
             searchUsers();
