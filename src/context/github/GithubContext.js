@@ -15,7 +15,8 @@ const api_config = {
 
 export const GithubProvider = ({ children }) => {
     const initialState = {
-        users: []
+        users: [],
+        user: {}
     }
     const [searchInput, setSearchInput] = useState("")
     const [state, dispatch] = useReducer(GithubReducer, initialState);
@@ -33,7 +34,7 @@ export const GithubProvider = ({ children }) => {
         dispatch({ type: 'USERDATA_DELETE' });
     }
     return (
-        <GithubContext.Provider value={{ users: state.users, setInput, searchUsers, clearUsers }}>
+        <GithubContext.Provider value={{ users: state.users, user: state.user, setInput, searchUsers, clearUsers }}>
             {children}
         </GithubContext.Provider>
     )
