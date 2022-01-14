@@ -9,7 +9,6 @@ const Github_Token = process.env.REACT_APP_GITHUB_TOKEN;
 
 const api_config = {
     method: 'get',
-    url: `${Github_URL}/search/users?q=`,
     headers: { 'Authorization': Github_Token }
 };
 
@@ -25,7 +24,6 @@ export const GithubProvider = ({ children }) => {
         setSearchInput(userInput);
         api_config.url = `${Github_URL}/search/users?q=${userInput}`;
     }
-
     const searchUsers = async () => {
         let userData = await axios(api_config);
         dispatch({ type: 'USERDATA_SEARCH', payload: userData.data.items });
@@ -33,8 +31,16 @@ export const GithubProvider = ({ children }) => {
     const clearUsers = () => {
         dispatch({ type: 'USERDATA_DELETE' });
     }
+    const getUser = async (login) => {
+        api_config.url = `${Github_URL}/users/${login}`;
+        let userData = await axios(api_config);
+        dispatch({ type: 'USER_GET', payload: userData.data });
+    }
+    const clearUser = () => {
+        dispatch({ type: 'USER_DELETE' });
+    }
     return (
-        <GithubContext.Provider value={{ users: state.users, user: state.user, setInput, searchUsers, clearUsers }}>
+        <GithubContext.Provider value={{ users: state.users, user: state.user, setInput, searchUsers, clearUsers, getUser, clearUser }}>
             {children}
         </GithubContext.Provider>
     )

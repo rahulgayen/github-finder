@@ -1,14 +1,17 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 
 import GithubContext from '../../context/github/GithubContext';
 import AlertContext from '../../context/alert/AlertContext';
 
 import Alert from "../layout/Alert"
 function UserSearch() {
-    const { users, setInput, searchUsers, clearUsers } = useContext(GithubContext);
+    const { users, setInput, searchUsers, clearUsers, clearUser } = useContext(GithubContext);
     const { alertEvent, alertMessage } = useContext(AlertContext);
     const [userInput, setUserInput] = useState("");
 
+    useEffect(() => {
+        clearUser();
+    }, [])
     const handleChange = (event) => {
         setUserInput(event.target.value);
     }

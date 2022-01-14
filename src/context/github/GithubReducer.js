@@ -9,6 +9,16 @@ const GithubReducer = (state, action) => {
             return {
                 ...state,
                 users: []
+            };
+        case 'USER_GET':
+            return {
+                ...state,
+                user: { ...action.payload }
+            }
+        case 'USER_DELETE':
+            return {
+                ...state,
+                user: {}
             }
         default:
             return state;
